@@ -15,8 +15,7 @@ async function bootstrap() {
   );
 
   app.enableCors({
-    origin: '*',
-    //origin: 'https://projeto-ac-silva.vercel.app/',
+    origin: 'https://projeto-ac-silva.vercel.app/',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
