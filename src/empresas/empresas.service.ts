@@ -6,13 +6,14 @@ import { CreateEmpresaDto } from './dto/create-empresa.dto'; // Importe o DTO
 export class EmpresasService {
   constructor(private prisma: PrismaService) {}
 
-  async criarCompleto(dados: CreateEmpresaDto) { // Use o DTO aqui
+  async criarCompleto(dados: CreateEmpresaDto) {
+    // Use o DTO aqui
     try {
       return await this.prisma.$transaction(async (tx) => {
         // 1. Procura a empresa pelo nome. Se existir, usa ela. Se não, cria.
         const empresa = await tx.empresa.upsert({
           where: { nome: dados.nome },
-          update: {}, 
+          update: {},
           create: { nome: dados.nome },
         });
 
@@ -49,7 +50,7 @@ export class EmpresasService {
       include: {
         obras: {
           include: {
-            responsavel: true, 
+            responsavel: true,
           },
         },
       },
